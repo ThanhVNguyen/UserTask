@@ -6,6 +6,9 @@ const routes = require('./src/router');
 const app = express();
 app.use(bodyParer.json());
 app.use('/userTaskForm', routes.userTaskForm);
+app.use('/component', routes.component);
+app.use('/userTask', routes.userTask);
+app.use('/form', routes.form);
 
 const mongodb = 'mongodb://localhost:27017/UserTaskForm';
 mongoose.connect(mongodb, {
