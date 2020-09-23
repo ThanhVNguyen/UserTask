@@ -7,9 +7,9 @@ const serverConfigs = require('./configs/server');
 
 const app = express();
 app.use(bodyParer.json());
-app.use('/component', routes.component);
-app.use('/userTask', routes.userTask);
-app.use('/form', routes.form);
+app.use('/components', routes.component);
+app.use('/userTasks', routes.userTask);
+app.use('/forms', routes.form);
 
 mongoose.connect(mongodbConfigs.CONNECTION_STR, mongodbConfigs.OPTIONS, (err) => {
   if (err) return process.stdout.write(`Mongodb server is down due to: ${err}\n`);

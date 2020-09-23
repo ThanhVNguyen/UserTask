@@ -4,10 +4,10 @@ const router = express.Router();
 
 const userTask = require('../controller/userTask');
 
-router.post('/create', userTask.createUserTask);
-router.get('/getList', userTask.getListUserTask);
-router.patch('/update/:id', userTask.updateUserTask);
-router.delete('/delete/:id', userTask.deleteUserTask);
-router.get('/retrieve', userTask.retrieveUserTask);
+router.post('/', userTask.createUserTask);
+router.get('/', userTask.getListUserTask);
+router.patch('/:id', userTask.updateUserTask);
+router.delete('/:id', userTask.deleteUserTask);
+router.get('/:id', userTask.retrieveUserTask);
 
 module.exports = router;

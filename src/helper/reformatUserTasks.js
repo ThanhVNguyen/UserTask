@@ -1,22 +1,22 @@
 const reformatUserTasks = (userTasks) => {
-  const result = JSON.parse(JSON.stringify(userTasks));
-  for (let j = 0; j < result.length; j += 1) {
-    const userTask = result[j];
+  userTasks.forEach((userTask) => {
     const componentInfoDict = {};
-    result.values.forEach((component) => {
-      componentInfoDict[component.component._id] = component;
+    userTask.values.forEach((component) => {
+      componentInfoDict[component.component._id] = {
+        ...component.component,
+        value: component.value,
+        label: component.label,
+      };
     });
-    for (let i = 0; i < userTask.form.components.length; i += 1) {
-      let component = userTask.form.components[i];
+    userTask.form.components.forEach((component, index, components) => {
       const componentId = component.component.toString();
       if (!componentInfoDict[componentId]) return;
-      component = componentInfoDict[componentId].component;
-      component.value = componentInfoDict[componentId].value;
-      component.label = componentInfoDict[componentId].label;
-    }
+      components[index].component = componentInfoDict[componentId];
+      delete components[index]._id;
+    });
     delete userTask.values;
-  }
-  return result;
+  });
+  return userTasks;
 };
 
 module.exports = {

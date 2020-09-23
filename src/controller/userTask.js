@@ -24,10 +24,11 @@ const getListUserTask = async (req, res) => {
       .skip(parseInt(req.query.skip, 10))
       .populate({ path: 'form' })
       .populate({ path: 'form.components.component' })
-      .populate({ path: 'values.component' });
+      .populate({ path: 'values.component' })
+      .lean();
     res.status(200).json({
       message: 'get success!',
-      data: userTask,
+      data: reformatUserTasks(userTask),
       status: 200,
     });
   } catch (e) {
@@ -79,10 +80,11 @@ const retrieveUserTask = async (req, res) => {
     const userTask = await UserTask.findById(req.params.id).limit(parseInt(req.query.limit, 10))
       .skip(parseInt(req.query.skip, 10))
       .populate({ path: 'form' })
-      .populate({ path: 'values.component' });
+      .populate({ path: 'values.component' })
+      .lean();
     res.status(200).json({
       message: 'get success!',
-      data: userTask,
+      data: reformatUserTasks([userTask]),
       status: 200,
     });
   } catch (e) {
