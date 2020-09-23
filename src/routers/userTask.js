@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const userTask = require('../controller/userTask');
+const userTask = require('../controllers/userTask');
 
 router.post('/', userTask.createUserTask);
 router.get('/', userTask.getListUserTask);

@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const component = require('../controller/component');
+const component = require('../controllers/component');
 
 router.post('/', component.createComponent);
 router.get('/', component.getListComponent);

@@ -1,4 +1,4 @@
-const Component = require('../model/Components');
+const Component = require('../models/Components');
 
 const createComponent = async (req, res) => {
   try {

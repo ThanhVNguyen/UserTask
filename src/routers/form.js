@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const form = require('../controller/form');
+const form = require('../controllers/form');
 
 router.post('/', form.createForm);
 router.get('/', form.getListForm);

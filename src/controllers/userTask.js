@@ -1,5 +1,5 @@
-const UserTask = require('../model/UserTasks');
-const { reformatUserTasks } = require('../helper/reformatUserTasks');
+const UserTask = require('../models/UserTasks');
+const { reformatUserTasks } = require('../helpers/reformatUserTasks');
 
 const createUserTask = async (req, res) => {
   try {
