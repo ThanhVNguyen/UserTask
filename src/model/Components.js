@@ -6,7 +6,7 @@ const ComponentSchema = new mongoose.Schema({
     required: true,
   },
   cssValue: {
-    type: String,
+    type: Object,
     required: true,
   },
   type: {

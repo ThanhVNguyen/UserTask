@@ -14,11 +14,15 @@ const UserTaskSchema = mongoose.Schema({
     ref: 'Form',
   },
   values: [{
-    componentInfo: {
+    component: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Component',
     },
     value: {
+      type: String,
+      required: true,
+    },
+    label: {
       type: String,
       required: true,
     },

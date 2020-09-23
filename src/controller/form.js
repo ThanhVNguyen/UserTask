@@ -21,7 +21,7 @@ const getListForm = async (req, res) => {
   try {
     const form = await Form.find().limit(parseInt(req.query.limit, 10))
       .skip(parseInt(req.query.skip, 10))
-      .populate({ path: 'components.componentInfo' });
+      .populate({ path: 'components.component' });
     res.status(200).json({
       message: 'get success!',
       data: form,
@@ -75,7 +75,7 @@ const retrieveForm = async (req, res) => {
   try {
     const form = await Form.findById(req.params.id).limit(parseInt(req.query.limit, 10))
       .skip(parseInt(req.query.skip, 10))
-      .populate({ path: 'components.componentInfo' });
+      .populate({ path: 'components.component' });
     res.status(200).json({
       message: 'retrieve success!',
       data: form,

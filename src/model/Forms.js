@@ -10,7 +10,7 @@ const FormSchema = new mongoose.Schema({
     required: true,
   },
   components: [{
-    componentInfo: {
+    component: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Component',
     },

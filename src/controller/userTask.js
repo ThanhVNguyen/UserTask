@@ -1,4 +1,5 @@
 const UserTask = require('../model/UserTasks');
+const { reformatUserTasks } = require('../helper/reformatUserTasks');
 
 const createUserTask = async (req, res) => {
   try {
@@ -22,7 +23,8 @@ const getListUserTask = async (req, res) => {
     const userTask = await UserTask.find().limit(parseInt(req.query.limit, 10))
       .skip(parseInt(req.query.skip, 10))
       .populate({ path: 'form' })
-      .populate({ path: 'values.componentInfo' });
+      .populate({ path: 'form.components.component' })
+      .populate({ path: 'values.component' });
     res.status(200).json({
       message: 'get success!',
       data: userTask,
@@ -74,10 +76,10 @@ const deleteUserTask = async (req, res) => {
 
 const retrieveUserTask = async (req, res) => {
   try {
-    const userTask = await UserTask.find(req.params.id).limit(parseInt(req.query.limit, 10))
+    const userTask = await UserTask.findById(req.params.id).limit(parseInt(req.query.limit, 10))
       .skip(parseInt(req.query.skip, 10))
       .populate({ path: 'form' })
-      .populate({ path: 'values.componentInfo' });
+      .populate({ path: 'values.component' });
     res.status(200).json({
       message: 'get success!',
       data: userTask,
