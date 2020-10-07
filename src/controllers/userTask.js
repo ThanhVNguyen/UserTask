@@ -22,9 +22,10 @@ const getListUserTask = async (req, res) => {
   try {
     const userTask = await UserTask.find().limit(parseInt(req.query.limit, 10))
       .skip(parseInt(req.query.skip, 10))
-      .populate({ path: 'form' })
-      .populate({ path: 'form.components.component' })
-      .populate({ path: 'values.component' })
+      .populate({
+        path: 'form',
+        populate: { path: 'components.component' },
+      })
       .lean();
     res.status(200).json({
       message: 'get success!',
@@ -77,16 +78,28 @@ const deleteUserTask = async (req, res) => {
 
 const retrieveUserTask = async (req, res) => {
   try {
-    const userTask = await UserTask.findById(req.params.id).limit(parseInt(req.query.limit, 10))
-      .skip(parseInt(req.query.skip, 10))
-      .populate({ path: 'form' })
-      .populate({ path: 'values.component' })
+    const userTask = await UserTask.findOne({
+      activityId: req.params.activityId,
+      definitionId: req.params.definitionId,
+    })
+      .populate({
+        path: 'form',
+        populate: { path: 'components.component' },
+      })
       .lean();
-    res.status(200).json({
-      message: 'get success!',
-      data: reformatUserTasks([userTask]),
-      status: 200,
-    });
+    if (userTask === null) {
+      res.status(200).json({
+        message: 'get success!',
+        data: [],
+        status: 200,
+      });
+    } else {
+      res.status(200).json({
+        message: 'get success!',
+        data: reformatUserTasks([userTask]),
+        status: 200,
+      });
+    }
   } catch (e) {
     res.status(200).json({
       error: e.toString(),

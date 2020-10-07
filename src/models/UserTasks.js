@@ -31,5 +31,5 @@ const UserTaskSchema = mongoose.Schema({
 {
   collection: 'UserTasks',
 });
-
+UserTaskSchema.index({ activityId: 1, definitionId: 1 }, { unique: true });
 module.exports = mongoose.model('UserTask', UserTaskSchema);

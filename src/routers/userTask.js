@@ -8,6 +8,6 @@ router.post('/', userTask.createUserTask);
 router.get('/', userTask.getListUserTask);
 router.patch('/:id', userTask.updateUserTask);
 router.delete('/:id', userTask.deleteUserTask);
-router.get('/:id', userTask.retrieveUserTask);
+router.get('/:definitionId/:activityId', userTask.retrieveUserTask);
 
 module.exports = router;
